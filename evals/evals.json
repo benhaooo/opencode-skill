@@ -1,0 +1,8 @@
+{
+  "skill_name": "opencode",
+  "evals": [
+    {"id": 1, "prompt": "使用 OpenCode 检查这个仓库的请求路径，找出一个明显的错误并补上回归测试。", "expected_output": "调用本机 OpenCode，完成授权的修复和测试，并返回 Markdown handoff。", "files": []},
+    {"id": 2, "prompt": "用 $opencode 评审这个页面的响应式布局，参考现有截图和组件，提出并实现有依据的 UI 改进。", "expected_output": "优先读取指定前端入口和视觉参考，完成实现后返回摘要与会话 ID。", "files": ["src/App.tsx", "references/current-ui.png"]},
+    {"id": 3, "prompt": "继续刚才的 OpenCode 会话：运行相关测试，修复剩余回归，并说明改动原因。", "expected_output": "使用会话续接参数调用 OpenCode，而不是创建无关的新任务。", "files": []}
+  ]
+}

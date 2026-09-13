@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenCode"
+  short_description: "Delegate focused coding tasks to local OpenCode CLI"
+  default_prompt: "Use $opencode to inspect the repository, implement the requested change, and report the result."
