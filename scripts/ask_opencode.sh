@@ -84,8 +84,7 @@ if (( ${#files[@]} )); then
   done
 fi
 if [[ -z "$output" ]]; then
-  skill_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-  output="$skill_dir/.runtime/$(date -u +"%Y%m%d-%H%M%S")-$$.md"
+  output="$workspace/.runtime/$(date -u +"%Y%m%d-%H%M%S")-$$.md"
 elif [[ "$output" != /* ]]; then output="$workspace/$output"; fi
 mkdir -p "$(dirname "$output")"; output="$(cd "$(dirname "$output")" && pwd)/$(basename "$output")"
 
@@ -97,7 +96,11 @@ cmd=(opencode run)
 [[ -n "$variant" ]] && cmd+=(--variant "$variant")
 (( thinking )) && cmd+=(--thinking)
 (( auto )) && cmd+=(--auto)
-for file in "${files[@]}"; do cmd+=(--file "$(absolute "$workspace" "$file")"); done
+if (( ${#files[@]} > 0 )); then
+  for file in "${files[@]}"; do
+    cmd+=(--file "$(absolute "$workspace" "$file")")
+  done
+fi
 cmd+=(--format json "$prompt")
 
 json_file="$(mktemp)"; stderr_file="$(mktemp)"; trap 'rm -f "$json_file" "$stderr_file"' EXIT
@@ -129,4 +132,3 @@ tools="$(jq -rs '[.[] | select((.type // "") == "tool" or (.type // "") == "tool
 } >"$output"
 [[ -n "$session_out" ]] && echo "session_id=$session_out"
 echo "output_path=$output"; echo "elapsed=${elapsed}s"
-

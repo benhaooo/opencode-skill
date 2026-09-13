@@ -29,7 +29,7 @@ ln -s "/absolute/path/to/opencode" "$AGENT_SKILLS_DIR/opencode"
   --file "src/App.tsx"
 ```
 
-成功时会打印 `output_path` 和可选的 `session_id`。将该 ID 传给 `--session` 可继续会话；`--continue` 会继续目标工作区最近的会话。
+成功时会打印 `output_path` 和可选的 `session_id`。未指定 `--output` 时，Markdown handoff 写入目标 workspace 的 `.runtime/`；将 session ID 传给 `--session` 可继续会话；`--continue` 会继续目标工作区最近的会话。
 
 ## 校验
 
